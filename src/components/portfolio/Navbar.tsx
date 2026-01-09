@@ -1,21 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
+  const navItems = [
     { label: 'About', href: '#about' },
     { label: 'Skills', href: '#skills' },
     { label: 'Projects', href: '#projects' },
@@ -24,89 +22,68 @@ const Navbar = () => {
   ];
 
   const scrollToSection = (href: string) => {
-    setIsMobileMenuOpen(false);
+    setMobileMenuOpen(false);
     const element = document.querySelector(href);
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/90 backdrop-blur-lg border-b border-border'
-          : 'bg-transparent'
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? 'bg-background/80 backdrop-blur-md border-b border-border/50' : ''
       }`}
     >
       <div className="container px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a
-            href="#"
+          <a 
+            href="#" 
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="text-xl font-bold text-foreground font-mono"
+            className="text-sm font-mono text-foreground hover:text-primary transition-colors"
           >
-            <span className="text-primary">&lt;</span>
-            KK
-            <span className="text-primary">/&gt;</span>
+            kk.
           </a>
 
-          {/* Desktop nav */}
+          {/* Nav links - hidden on mobile */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {navItems.map((item) => (
               <button
-                key={link.label}
-                onClick={() => scrollToSection(link.href)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                key={item.label}
+                onClick={() => scrollToSection(item.href)}
+                className="text-xs font-mono text-muted-foreground hover:text-foreground transition-colors"
               >
-                {link.label}
+                {item.label}
               </button>
             ))}
-            <Button
-              size="sm"
-              asChild
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
-            >
-              <a href="#contact">Hire Me</a>
-            </Button>
           </div>
-
+          
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-foreground" />
-            ) : (
-              <Menu className="w-6 h-6 text-foreground" />
-            )}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
       {/* Mobile menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-background border-b border-border">
-          <div className="container px-6 py-4 space-y-4">
-            {navLinks.map((link) => (
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-background/95 backdrop-blur-md border-b border-border/50">
+          <div className="container px-6 py-4 space-y-3">
+            {navItems.map((item) => (
               <button
-                key={link.label}
-                onClick={() => scrollToSection(link.href)}
-                className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
+                key={item.label}
+                onClick={() => scrollToSection(item.href)}
+                className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
               >
-                {link.label}
+                {item.label}
               </button>
             ))}
-            <Button
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
-              onClick={() => scrollToSection('#contact')}
-            >
-              Hire Me
-            </Button>
           </div>
         </div>
       )}

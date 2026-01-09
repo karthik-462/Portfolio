@@ -1,155 +1,202 @@
+import { useState } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { ExternalLink, Github, Users, Clock, TrendingUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Github, ArrowUpRight, ChevronDown } from 'lucide-react';
 
 interface Project {
+  id: string;
   title: string;
   problem: string;
-  solution: string;
-  techStack: string[];
-  outcomes: string[];
+  approach: string;
+  tools: string[];
+  result: string;
   github?: string;
-  live?: string;
-  icon: typeof Users;
 }
 
 const Projects = () => {
-  const { ref, isVisible } = useScrollReveal();
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.1 });
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const projects: Project[] = [
     {
+      id: 'nest-notion',
       title: 'Nest Notion',
-      problem: 'Students lacked a centralized platform to share and access academic resources efficiently.',
-      solution: 'Built a collaborative academic resource platform with optimized database queries, pagination, and role-based access control.',
-      techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
-      outcomes: ['80+ active students', '40% faster data fetch', 'Secure content management'],
+      problem: 'Students needed a centralized platform to share and access academic resources without friction.',
+      approach: 'Designed a role-based system with optimized MongoDB queries and implemented pagination for scalability. Built modular components for different user types.',
+      tools: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
+      result: '80+ active students, 40% faster data retrieval through query optimization',
       github: 'https://github.com/karkarnati/nest-notion',
-      icon: Users,
     },
     {
+      id: 'submira',
       title: 'Submira',
-      problem: 'Users struggled to track and manage multiple recurring subscriptions.',
-      solution: 'Developed a full-stack subscription tracker with modular REST APIs, automated renewal reminders via cron jobs.',
-      techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'Cron'],
-      outcomes: ['1000+ records/user', '30% better engagement', 'Automated reminders'],
+      problem: 'Users lose track of recurring subscriptions, leading to unnecessary charges and poor financial awareness.',
+      approach: 'Built a REST API with scheduled tasks for renewal reminders. Focused on data integrity and user-specific data isolation.',
+      tools: ['React', 'Node.js', 'Express', 'MongoDB', 'Cron'],
+      result: 'Handles 1000+ records per user, 30% improvement in user engagement',
       github: 'https://github.com/karkarnati/submira',
-      icon: Clock,
     },
     {
+      id: 'shrubyvore',
       title: 'Shrubyvore',
-      problem: 'New gardeners needed an accessible guide with personalized plant care information.',
-      solution: 'Created an interactive gardening web app with detailed plant entries, search, and filtering features.',
-      techStack: ['React', 'TailwindCSS', 'JavaScript'],
-      outcomes: ['30+ plant entries', '25% longer sessions', 'Responsive design'],
+      problem: 'New gardeners struggle to find accessible, structured plant care information.',
+      approach: 'Created a searchable plant database with filtering. Prioritized mobile responsiveness and fast initial load.',
+      tools: ['React', 'TailwindCSS', 'JavaScript'],
+      result: '30+ plant entries, 25% longer average session duration',
       github: 'https://github.com/karkarnati/shrubyvore',
-      icon: TrendingUp,
     },
   ];
 
+  const toggleExpand = (id: string) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
+
   return (
-    <section id="projects" className="py-24 relative">
+    <section id="projects" className="py-32 relative">
       <div className="container px-6">
-        <div
-          ref={ref}
-          className={`transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          {/* Section header */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <span className="text-primary font-mono text-sm mb-2 block">// Projects</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              What I've Built
+        <div ref={ref} className="max-w-5xl mx-auto">
+          {/* Header - offset */}
+          <div 
+            className={`mb-16 pl-0 md:pl-12 transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <span className="text-xs font-mono text-primary/60 block mb-2">selected work</span>
+            <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+              Engineering case studies
             </h2>
-            <p className="text-muted-foreground">
-              Real-world applications focused on solving genuine problems.
-            </p>
           </div>
 
-          {/* Projects grid */}
-          <div className="max-w-5xl mx-auto space-y-8">
+          {/* Projects - varied layouts */}
+          <div className="space-y-6">
             {projects.map((project, index) => (
-              <div
-                key={project.title}
-                className={`group p-8 rounded-2xl bg-card border border-border hover:border-primary/30 
-                  transition-all duration-500 hover-lift ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                  }`}
+              <article
+                key={project.id}
+                className={`group transition-all duration-700 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                  {/* Project icon */}
-                  <div className="p-4 rounded-xl bg-muted shrink-0 group-hover:bg-primary/10 transition-colors">
-                    <project.icon className="w-8 h-8 text-primary" />
-                  </div>
-
-                  {/* Project content */}
-                  <div className="flex-1 space-y-4">
+                <div 
+                  className={`relative border border-border rounded-lg overflow-hidden transition-all duration-300 ${
+                    expandedId === project.id ? 'border-primary/40 bg-card' : 'hover:border-primary/20'
+                  }`}
+                >
+                  {/* Header - always visible */}
+                  <button
+                    onClick={() => toggleExpand(project.id)}
+                    className="w-full text-left p-6 md:p-8"
+                  >
                     <div className="flex items-start justify-between gap-4">
-                      <h3 className="text-2xl font-bold text-foreground">{project.title}</h3>
-                      <div className="flex gap-2 shrink-0">
-                        {project.github && (
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 rounded-lg bg-muted hover:bg-primary/10 transition-colors"
-                            aria-label="View on GitHub"
-                          >
-                            <Github className="w-5 h-5 text-muted-foreground hover:text-primary" />
-                          </a>
-                        )}
-                        {project.live && (
-                          <a
-                            href={project.live}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 rounded-lg bg-muted hover:bg-primary/10 transition-colors"
-                            aria-label="View live site"
-                          >
-                            <ExternalLink className="w-5 h-5 text-muted-foreground hover:text-primary" />
-                          </a>
-                        )}
+                      <div className="flex-1">
+                        <div className="flex items-center gap-4 mb-3">
+                          <h3 className="text-xl md:text-2xl font-semibold text-foreground">
+                            {project.title}
+                          </h3>
+                          {project.github && (
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-muted-foreground hover:text-primary transition-colors"
+                            >
+                              <Github className="w-4 h-4" />
+                            </a>
+                          )}
+                        </div>
+                        <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-2xl">
+                          {project.problem}
+                        </p>
                       </div>
+                      <ChevronDown 
+                        className={`w-5 h-5 text-muted-foreground transition-transform duration-300 shrink-0 ${
+                          expandedId === project.id ? 'rotate-180' : ''
+                        }`}
+                      />
                     </div>
-
-                    {/* Problem & Solution */}
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <span className="text-xs font-semibold text-primary/80 uppercase tracking-wider">Problem</span>
-                        <p className="text-muted-foreground text-sm mt-1 leading-relaxed">{project.problem}</p>
-                      </div>
-                      <div>
-                        <span className="text-xs font-semibold text-primary/80 uppercase tracking-wider">Solution</span>
-                        <p className="text-muted-foreground text-sm mt-1 leading-relaxed">{project.solution}</p>
-                      </div>
-                    </div>
-
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 text-xs font-mono bg-primary/10 text-primary rounded-full"
+                    
+                    {/* Tools preview */}
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {project.tools.slice(0, 3).map((tool) => (
+                        <span 
+                          key={tool}
+                          className="text-xs font-mono text-primary/70 px-2 py-1 bg-primary/5 rounded"
                         >
-                          {tech}
+                          {tool}
                         </span>
                       ))}
+                      {project.tools.length > 3 && (
+                        <span className="text-xs font-mono text-muted-foreground">
+                          +{project.tools.length - 3} more
+                        </span>
+                      )}
                     </div>
-
-                    {/* Outcomes */}
-                    <div className="flex flex-wrap gap-4">
-                      {project.outcomes.map((outcome) => (
-                        <span key={outcome} className="text-sm text-muted-foreground flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                          {outcome}
-                        </span>
-                      ))}
+                  </button>
+                  
+                  {/* Expanded content */}
+                  <div 
+                    className={`overflow-hidden transition-all duration-500 ${
+                      expandedId === project.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <div className="px-6 md:px-8 pb-8 pt-2 border-t border-border/50">
+                      <div className="grid md:grid-cols-2 gap-8">
+                        {/* Approach */}
+                        <div>
+                          <span className="text-xs font-mono text-primary/60 uppercase tracking-wider">
+                            Approach
+                          </span>
+                          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                            {project.approach}
+                          </p>
+                        </div>
+                        
+                        {/* Result */}
+                        <div>
+                          <span className="text-xs font-mono text-primary/60 uppercase tracking-wider">
+                            Result
+                          </span>
+                          <p className="mt-2 text-sm text-foreground leading-relaxed">
+                            {project.result}
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* Full tech stack */}
+                      <div className="mt-6 pt-4 border-t border-border/30">
+                        <div className="flex flex-wrap gap-3">
+                          {project.tools.map((tool) => (
+                            <span 
+                              key={tool}
+                              className="text-xs font-mono text-foreground/80"
+                            >
+                              {tool}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
+          </div>
+          
+          {/* More projects hint */}
+          <div 
+            className={`mt-12 text-right transition-all duration-700 delay-500 ${
+              isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <a 
+              href="https://github.com/karkarnati"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
+            >
+              <span>More on GitHub</span>
+              <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
           </div>
         </div>
       </div>

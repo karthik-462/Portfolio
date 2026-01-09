@@ -1,143 +1,143 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { Briefcase, GraduationCap, Award } from 'lucide-react';
 
 const Experience = () => {
-  const { ref, isVisible } = useScrollReveal();
-
-  const timeline = [
-    {
-      type: 'experience',
-      icon: Briefcase,
-      title: 'Software Tech Lead Intern',
-      organization: 'VISWAM.AI',
-      period: 'May 2025 – July 2025',
-      description: [
-        'Guided cohort of 10+ interns, resolving daily technical queries',
-        'Restructured internship training workflow',
-        'Mentored during project reviews, helping debug issues',
-      ],
-    },
-    {
-      type: 'education',
-      icon: GraduationCap,
-      title: 'B.Tech in Computer Science',
-      organization: 'VNR VJIET',
-      period: '2023 – 2027',
-      description: ['CGPA: 8.43', 'Hyderabad, India'],
-    },
-    {
-      type: 'education',
-      icon: GraduationCap,
-      title: 'Intermediate',
-      organization: 'Excellencia Junior College',
-      period: '2021 – 2023',
-      description: ['Score: 96.1%'],
-    },
-  ];
-
-  const certifications = [
-    {
-      title: 'Flutter Development Certification',
-      issuer: 'GDGC',
-      year: '2023',
-      description: 'Cross-platform UI development and state management',
-    },
-    {
-      title: 'Java Programming Fundamentals',
-      issuer: 'Infosys Springboard',
-      year: '2024',
-      description: 'OOP concepts and best practices',
-    },
-    {
-      title: 'Smart Interviews Completion',
-      issuer: 'Smart Interviews',
-      year: '2025',
-      description: 'Problem solving and competitive programming',
-    },
-  ];
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.15 });
 
   return (
-    <section id="experience" className="py-24 relative bg-muted/30">
-      <div className="container px-6">
-        <div
-          ref={ref}
-          className={`max-w-4xl mx-auto transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          {/* Experience & Education */}
-          <div className="mb-16">
-            <span className="text-primary font-mono text-sm mb-2 block">// Journey</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12">
-              Experience & Education
-            </h2>
+    <section id="experience" className="py-32 relative">
+      {/* Background accent */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/20 to-transparent pointer-events-none" />
+      
+      <div className="container px-6 relative">
+        <div ref={ref} className="max-w-5xl mx-auto">
+          
+          {/* Experience */}
+          <div className="mb-24">
+            {/* Header */}
+            <div 
+              className={`mb-12 transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <span className="text-xs font-mono text-primary/60 block mb-2">experience</span>
+              <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+                Learning by doing
+              </h2>
+            </div>
 
-            {/* Timeline */}
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-6 top-0 bottom-0 w-px bg-border" />
-
-              <div className="space-y-8">
-                {timeline.map((item, index) => (
-                  <div
-                    key={`${item.title}-${item.period}`}
-                    className={`relative pl-16 transition-all duration-500 ${
-                      isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-                    }`}
-                    style={{ transitionDelay: `${index * 150}ms` }}
-                  >
-                    {/* Timeline dot */}
-                    <div className="absolute left-0 p-3 rounded-full bg-card border border-border">
-                      <item.icon className="w-4 h-4 text-primary" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-                        <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                        <span className="text-sm font-mono text-primary">{item.period}</span>
-                      </div>
-                      <p className="text-muted-foreground text-sm mb-3">{item.organization}</p>
-                      <ul className="space-y-1">
-                        {item.description.map((desc, i) => (
-                          <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                            <span className="w-1 h-1 rounded-full bg-primary mt-2 shrink-0" />
-                            {desc}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+            {/* Experience item - prominent */}
+            <div 
+              className={`grid md:grid-cols-12 gap-6 transition-all duration-700 delay-150 ${
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+              }`}
+            >
+              <div className="md:col-span-4">
+                <span className="text-xs font-mono text-muted-foreground">May 2025 — July 2025</span>
+              </div>
+              <div className="md:col-span-8">
+                <div className="border-l-2 border-primary/40 pl-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-1">
+                    Software Tech Lead Intern
+                  </h3>
+                  <p className="text-sm text-primary mb-4">VISWAM.AI</p>
+                  
+                  <div className="space-y-3 text-sm text-muted-foreground">
+                    <p>
+                      Led a cohort of 10+ interns, resolving daily technical queries and unblocking development workflows.
+                    </p>
+                    <p>
+                      Restructured the internship training program to improve onboarding efficiency.
+                    </p>
+                    <p>
+                      Mentored during project reviews, helping debug complex issues and improve code quality.
+                    </p>
                   </div>
-                ))}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Certifications */}
-          <div>
-            <span className="text-primary font-mono text-sm mb-2 block">// Credentials</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
-              Certifications
-            </h2>
+          {/* Education */}
+          <div className="mb-24">
+            {/* Header - aligned differently */}
+            <div 
+              className={`mb-12 md:ml-auto md:text-right max-w-md transition-all duration-700 delay-200 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <span className="text-xs font-mono text-primary/60 block mb-2">education</span>
+              <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+                Foundation
+              </h2>
+            </div>
 
-            <div className="grid sm:grid-cols-3 gap-4">
-              {certifications.map((cert, index) => (
-                <div
-                  key={cert.title}
-                  className={`p-5 rounded-xl bg-card border border-border hover:border-primary/30 
-                    transition-all duration-500 ${
-                      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                    }`}
-                  style={{ transitionDelay: `${(index + timeline.length) * 100}ms` }}
-                >
-                  <Award className="w-5 h-5 text-primary mb-3" />
-                  <h3 className="font-semibold text-foreground text-sm mb-1">{cert.title}</h3>
-                  <p className="text-xs text-muted-foreground mb-2">
-                    {cert.issuer} • {cert.year}
-                  </p>
-                  <p className="text-xs text-muted-foreground">{cert.description}</p>
+            {/* Education items */}
+            <div className="space-y-8">
+              <div 
+                className={`grid md:grid-cols-12 gap-6 transition-all duration-700 delay-300 ${
+                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+                }`}
+              >
+                <div className="md:col-span-5 md:col-start-2">
+                  <h3 className="text-lg font-medium text-foreground">B.Tech Computer Science</h3>
+                  <p className="text-sm text-muted-foreground">VNR VJIET, Hyderabad</p>
                 </div>
-              ))}
+                <div className="md:col-span-3">
+                  <span className="text-xs font-mono text-muted-foreground">2023 — 2027</span>
+                </div>
+                <div className="md:col-span-2 md:text-right">
+                  <span className="text-sm font-mono text-primary">8.43 CGPA</span>
+                </div>
+              </div>
+              
+              <div 
+                className={`grid md:grid-cols-12 gap-6 transition-all duration-700 delay-400 ${
+                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+                }`}
+              >
+                <div className="md:col-span-5 md:col-start-2">
+                  <h3 className="text-lg font-medium text-foreground">Intermediate</h3>
+                  <p className="text-sm text-muted-foreground">Excellencia Junior College</p>
+                </div>
+                <div className="md:col-span-3">
+                  <span className="text-xs font-mono text-muted-foreground">2021 — 2023</span>
+                </div>
+                <div className="md:col-span-2 md:text-right">
+                  <span className="text-sm font-mono text-primary">96.1%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Certifications - minimal, revealed */}
+          <div 
+            className={`transition-all duration-700 delay-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <div className="border-t border-border/50 pt-8">
+              <span className="text-xs font-mono text-muted-foreground/60 block mb-6">credentials</span>
+              
+              <div className="flex flex-wrap gap-x-8 gap-y-4">
+                <div className="group">
+                  <p className="text-sm text-foreground group-hover:text-primary transition-colors">
+                    Flutter Development
+                  </p>
+                  <p className="text-xs text-muted-foreground">GDGC • 2023</p>
+                </div>
+                <div className="group">
+                  <p className="text-sm text-foreground group-hover:text-primary transition-colors">
+                    Java Programming
+                  </p>
+                  <p className="text-xs text-muted-foreground">Infosys Springboard • 2024</p>
+                </div>
+                <div className="group">
+                  <p className="text-sm text-foreground group-hover:text-primary transition-colors">
+                    Smart Interviews
+                  </p>
+                  <p className="text-xs text-muted-foreground">Problem Solving • 2025</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
