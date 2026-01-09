@@ -1,79 +1,93 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { Code2, Database, Server, Lightbulb } from 'lucide-react';
 
 const About = () => {
-  const { ref, isVisible } = useScrollReveal();
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
 
-  const approaches = [
+  const blocks = [
     {
-      icon: Lightbulb,
-      title: 'Problem First',
-      description: 'I start by understanding the core problem before writing any code.',
+      label: '01',
+      content: 'I study Computer Science at VNR VJIET with a focus on understanding how systems work — not just how to use them.',
     },
     {
-      icon: Code2,
-      title: 'Clean Code',
-      description: 'Writing maintainable, readable code that scales with the project.',
+      label: '02', 
+      content: 'My approach starts with the problem. Before writing code, I map out data flow, edge cases, and user impact.',
     },
     {
-      icon: Server,
-      title: 'Full Stack',
-      description: 'Comfortable across the entire stack, from database to deployment.',
+      label: '03',
+      content: 'I build full-stack applications, from database schemas to polished interfaces. I care about both the architecture and the experience.',
     },
     {
-      icon: Database,
-      title: 'System Thinking',
-      description: 'Designing with data flow, performance, and user experience in mind.',
+      label: '04',
+      content: 'Currently exploring system design patterns, scalability, and contributing to projects that solve real problems.',
     },
   ];
 
   return (
-    <section id="about" className="py-24 relative">
+    <section id="about" className="py-32 relative">
+      {/* Section marker */}
+      <div className="absolute right-8 md:right-16 top-32 text-xs font-mono text-muted-foreground/50 writing-mode-vertical hidden lg:block" 
+           style={{ writingMode: 'vertical-rl' }}>
+        about
+      </div>
+      
       <div className="container px-6">
-        <div 
-          ref={ref}
-          className={`max-w-4xl mx-auto transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          {/* Section header */}
-          <div className="mb-12">
-            <span className="text-primary font-mono text-sm mb-2 block">// About</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              How I Approach Software
+        <div ref={ref} className="max-w-5xl mx-auto">
+          {/* Header - left aligned, minimal */}
+          <div 
+            className={`mb-16 transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+            }`}
+          >
+            <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+              How I think about software
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
-              As a Computer Science student at VNR VJIET, I've developed a passion for building 
-              software that solves real problems. My approach combines strong fundamentals with 
-              hands-on experience in full-stack development, emphasizing clean architecture and 
-              thoughtful system design.
-            </p>
           </div>
 
-          {/* Approach cards */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {approaches.map((item, index) => (
+          {/* Content blocks - staggered, asymmetric */}
+          <div className="space-y-12 md:space-y-16">
+            {blocks.map((block, index) => (
               <div
-                key={item.title}
-                className={`group p-6 rounded-xl bg-card border border-border hover:border-primary/50 
-                  transition-all duration-500 hover-lift ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                  }`}
-                style={{ transitionDelay: `${(index + 1) * 100}ms` }}
+                key={block.label}
+                className={`grid md:grid-cols-12 gap-4 md:gap-8 items-start transition-all duration-700 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ 
+                  transitionDelay: `${(index + 1) * 150}ms`,
+                  marginLeft: index % 2 === 1 ? '0' : undefined,
+                }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-muted group-hover:bg-primary/10 transition-colors">
-                    <item.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
+                {/* Number - offset based on index */}
+                <div 
+                  className={`md:col-span-2 ${
+                    index % 2 === 1 ? 'md:col-start-2' : 'md:col-start-1'
+                  }`}
+                >
+                  <span className="text-xs font-mono text-primary/60">{block.label}</span>
+                </div>
+                
+                {/* Content - varying widths */}
+                <div 
+                  className={`md:col-span-8 ${
+                    index % 2 === 1 ? 'md:col-start-4' : 'md:col-start-3'
+                  }`}
+                >
+                  <p className="text-muted-foreground leading-relaxed text-lg">
+                    {block.content}
+                  </p>
                 </div>
               </div>
             ))}
+          </div>
+          
+          {/* Visual divider */}
+          <div 
+            className={`mt-20 flex items-center gap-6 transition-all duration-700 delay-700 ${
+              isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <div className="w-12 h-px bg-primary/40" />
+            <span className="text-xs font-mono text-muted-foreground">CGPA 8.43</span>
+            <div className="flex-1 h-px bg-border" />
           </div>
         </div>
       </div>

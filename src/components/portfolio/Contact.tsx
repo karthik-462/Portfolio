@@ -1,178 +1,140 @@
 import { useState } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Mail, Github, Linkedin, MapPin, Send, CheckCircle } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
-  const { ref, isVisible } = useScrollReveal();
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
+    setStatus('sending');
+    
     await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    
+    setStatus('sent');
     setFormData({ name: '', email: '', message: '' });
-
+    
     toast({
-      title: 'Message sent!',
-      description: "Thanks for reaching out. I'll get back to you soon.",
+      title: 'Message sent',
+      description: "I'll get back to you soon.",
     });
-
-    setTimeout(() => setIsSubmitted(false), 3000);
+    
+    setTimeout(() => setStatus('idle'), 3000);
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'karkarnati@gmail.com',
-      href: 'mailto:karkarnati@gmail.com',
-    },
-    {
-      icon: Github,
-      label: 'GitHub',
-      value: 'github.com/karkarnati',
-      href: 'https://github.com/karkarnati',
-    },
-    {
-      icon: Linkedin,
-      label: 'LinkedIn',
-      value: 'linkedin.com/in/karthikeya-karnati',
-      href: 'https://linkedin.com/in/karthikeya-karnati',
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Hyderabad, India',
-      href: null,
-    },
-  ];
-
   return (
-    <section id="contact" className="py-24 relative">
+    <section id="contact" className="py-32 relative">
       <div className="container px-6">
-        <div
-          ref={ref}
-          className={`max-w-4xl mx-auto transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          {/* Section header */}
-          <div className="text-center mb-12">
-            <span className="text-primary font-mono text-sm mb-2 block">// Contact</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Let's Connect
+        <div ref={ref} className="max-w-4xl mx-auto">
+          
+          {/* Header - centered, calm */}
+          <div 
+            className={`text-center mb-16 transition-all duration-700 ${
+              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
+          >
+            <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-4">
+              Let's connect
             </h2>
-            <p className="text-muted-foreground max-w-lg mx-auto">
-              Have a project in mind or want to discuss opportunities? 
-              I'm always open to interesting conversations.
+            <p className="text-muted-foreground max-w-md mx-auto">
+              Open to opportunities, collaborations, or just interesting conversations about software.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact info */}
-            <div
-              className={`space-y-6 transition-all duration-500 ${
-                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+          {/* Two column - links and form */}
+          <div className="grid md:grid-cols-2 gap-16">
+            
+            {/* Links - simple, direct */}
+            <div 
+              className={`space-y-8 transition-all duration-700 delay-150 ${
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
               }`}
-              style={{ transitionDelay: '100ms' }}
-            >
-              {contactInfo.map((item) => (
-                <div key={item.label} className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-muted">
-                    <item.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">{item.label}</p>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-foreground hover:text-primary transition-colors"
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="text-foreground">{item.value}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Contact form */}
-            <form
-              onSubmit={handleSubmit}
-              className={`space-y-4 transition-all duration-500 ${
-                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-              }`}
-              style={{ transitionDelay: '200ms' }}
             >
               <div>
-                <Input
+                <span className="text-xs font-mono text-muted-foreground/60 block mb-4">reach out</span>
+                
+                <a 
+                  href="mailto:karkarnati@gmail.com"
+                  className="block text-lg text-foreground hover:text-primary transition-colors mb-2"
+                >
+                  karkarnati@gmail.com
+                </a>
+                <p className="text-sm text-muted-foreground">Hyderabad, India</p>
+              </div>
+              
+              <div className="space-y-3">
+                <a 
+                  href="https://github.com/karkarnati"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
+                >
+                  <span className="text-sm">GitHub</span>
+                  <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+                <a 
+                  href="https://linkedin.com/in/karthikeya-karnati"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
+                >
+                  <span className="text-sm">LinkedIn</span>
+                  <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+              </div>
+            </div>
+
+            {/* Form - minimal */}
+            <form 
+              onSubmit={handleSubmit}
+              className={`space-y-6 transition-all duration-700 delay-300 ${
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+              }`}
+            >
+              <div>
+                <input
                   type="text"
-                  placeholder="Your name"
+                  placeholder="Name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  className="bg-card border-border focus:border-primary"
+                  className="w-full bg-transparent border-b border-border pb-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary transition-colors"
                 />
               </div>
+              
               <div>
-                <Input
+                <input
                   type="email"
-                  placeholder="Your email"
+                  placeholder="Email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="bg-card border-border focus:border-primary"
+                  className="w-full bg-transparent border-b border-border pb-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary transition-colors"
                 />
               </div>
+              
               <div>
-                <Textarea
-                  placeholder="Your message"
+                <textarea
+                  placeholder="Message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
-                  rows={5}
-                  className="bg-card border-border focus:border-primary resize-none"
+                  rows={4}
+                  className="w-full bg-transparent border-b border-border pb-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary transition-colors resize-none"
                 />
               </div>
-              <Button
+              
+              <button
                 type="submit"
-                disabled={isSubmitting || isSubmitted}
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
+                disabled={status !== 'idle'}
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors disabled:opacity-50"
               >
-                {isSubmitted ? (
-                  <>
-                    <CheckCircle className="w-4 h-4 mr-2" />
-                    Message Sent
-                  </>
-                ) : isSubmitting ? (
-                  'Sending...'
-                ) : (
-                  <>
-                    <Send className="w-4 h-4 mr-2" />
-                    Send Message
-                  </>
-                )}
-              </Button>
+                {status === 'sending' ? 'Sending...' : status === 'sent' ? 'Sent ✓' : 'Send message →'}
+              </button>
             </form>
           </div>
         </div>
