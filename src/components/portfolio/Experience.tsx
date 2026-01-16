@@ -43,99 +43,12 @@ const Experience = () => {
                   
                   <div className="space-y-3 text-sm text-muted-foreground">
                     <p>
-                      Led a cohort of 10+ interns, resolving daily technical queries and unblocking development workflows.
+                      Supported and guided a cohort of 10+ interns by resolving daily technical queries related to web development.
                     </p>
                     <p>
-                      Restructured the internship training program to improve onboarding efficiency.
-                    </p>
-                    <p>
-                      Mentored during project reviews, helping debug complex issues and improve code quality.
+                      Assisted in restructuring the internship training workflow and mentored interns during project review sessions, helping them debug issues.
                     </p>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Education */}
-          <div className="mb-24">
-            {/* Header - aligned differently */}
-            <div 
-              className={`mb-12 md:ml-auto md:text-right max-w-md transition-all duration-700 delay-200 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              <span className="text-xs font-mono text-primary/60 block mb-2">education</span>
-              <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-                Foundation
-              </h2>
-            </div>
-
-            {/* Education items */}
-            <div className="space-y-8">
-              <div 
-                className={`grid md:grid-cols-12 gap-6 transition-all duration-700 delay-300 ${
-                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-                }`}
-              >
-                <div className="md:col-span-5 md:col-start-2">
-                  <h3 className="text-lg font-medium text-foreground">B.Tech Computer Science</h3>
-                  <p className="text-sm text-muted-foreground">VNR VJIET, Hyderabad</p>
-                </div>
-                <div className="md:col-span-3">
-                  <span className="text-xs font-mono text-muted-foreground">2023 — 2027</span>
-                </div>
-                <div className="md:col-span-2 md:text-right">
-                  <span className="text-sm font-mono text-primary">8.43 CGPA</span>
-                </div>
-              </div>
-              
-              <div 
-                className={`grid md:grid-cols-12 gap-6 transition-all duration-700 delay-400 ${
-                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-                }`}
-              >
-                <div className="md:col-span-5 md:col-start-2">
-                  <h3 className="text-lg font-medium text-foreground">Intermediate</h3>
-                  <p className="text-sm text-muted-foreground">Excellencia Junior College</p>
-                </div>
-                <div className="md:col-span-3">
-                  <span className="text-xs font-mono text-muted-foreground">2021 — 2023</span>
-                </div>
-                <div className="md:col-span-2 md:text-right">
-                  <span className="text-sm font-mono text-primary">96.1%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Certifications - minimal, revealed */}
-          <div 
-            className={`transition-all duration-700 delay-500 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
-            <div className="border-t border-border/50 pt-8">
-              <span className="text-xs font-mono text-muted-foreground/60 block mb-6">credentials</span>
-              
-              <div className="flex flex-wrap gap-x-8 gap-y-4">
-                <div className="group">
-                  <p className="text-sm text-foreground group-hover:text-primary transition-colors">
-                    Flutter Development
-                  </p>
-                  <p className="text-xs text-muted-foreground">GDGC • 2023</p>
-                </div>
-                <div className="group">
-                  <p className="text-sm text-foreground group-hover:text-primary transition-colors">
-                    Java Programming
-                  </p>
-                  <p className="text-xs text-muted-foreground">Infosys Springboard • 2024</p>
-                </div>
-                <div className="group">
-                  <p className="text-sm text-foreground group-hover:text-primary transition-colors">
-                    Smart Interviews
-                  </p>
-                  <p className="text-xs text-muted-foreground">Problem Solving • 2025</p>
                 </div>
               </div>
             </div>

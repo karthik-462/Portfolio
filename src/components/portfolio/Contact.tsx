@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { ArrowUpRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
@@ -12,18 +13,44 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
-    
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    setStatus('sent');
-    setFormData({ name: '', email: '', message: '' });
-    
-    toast({
-      title: 'Message sent',
-      description: "I'll get back to you soon.",
-    });
-    
-    setTimeout(() => setStatus('idle'), 3000);
+
+    try {
+      // EmailJS configuration - You'll need to set these up in your EmailJS account
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'your_service_id';
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'your_template_id';
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'your_public_key';
+
+      // Prepare email parameters
+      const emailParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'karkarnati@gmail.com', // Your email address
+      };
+
+      // Send email using EmailJS
+      await emailjs.send(serviceId, templateId, emailParams, publicKey);
+
+      setStatus('sent');
+      setFormData({ name: '', email: '', message: '' });
+
+      toast({
+        title: 'Message sent successfully!',
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+
+      setTimeout(() => setStatus('idle'), 3000);
+
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setStatus('idle');
+
+      toast({
+        title: 'Failed to send message',
+        description: 'Please try again later or contact me directly at karkarnati@gmail.com',
+        variant: 'destructive',
+      });
+    }
   };
 
   return (
@@ -63,12 +90,13 @@ const Contact = () => {
                 >
                   karkarnati@gmail.com
                 </a>
+                <p className="text-sm text-muted-foreground mb-1">+91 9030203242</p>
                 <p className="text-sm text-muted-foreground">Hyderabad, India</p>
               </div>
               
               <div className="space-y-3">
                 <a 
-                  href="https://github.com/karkarnati"
+                  href="https://github.com/karthik-462"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
@@ -77,7 +105,7 @@ const Contact = () => {
                   <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
                 <a 
-                  href="https://linkedin.com/in/karthikeya-karnati"
+                  href="https://www.linkedin.com/in/karthikeya-karnati-950411296/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"

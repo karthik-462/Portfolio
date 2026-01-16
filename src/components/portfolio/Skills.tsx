@@ -5,29 +5,29 @@ const Skills = () => {
 
   const capabilities = [
     {
-      context: 'When building interfaces',
-      tools: ['React', 'TypeScript', 'TailwindCSS', 'HTML5', 'CSS3'],
-      description: 'Component-driven development with type safety',
-    },
-    {
-      context: 'When building APIs',
-      tools: ['Node.js', 'Express.js', 'REST', 'JWT'],
-      description: 'Modular backends with secure authentication',
-    },
-    {
-      context: 'When working with data',
-      tools: ['MongoDB', 'MySQL', 'OracleSQL'],
-      description: 'Schema design and query optimization',
-    },
-    {
-      context: 'When solving problems',
+      context: 'Languages',
       tools: ['C', 'C++', 'Python', 'JavaScript'],
-      description: 'DSA, algorithms, and competitive programming',
+      description: 'Programming languages for various applications',
     },
     {
-      context: 'When shipping software',
-      tools: ['Git', 'GitHub', 'Docker', 'VS Code'],
-      description: 'Version control and containerized deployments',
+      context: 'Frontend',
+      tools: ['React', 'TailwindCSS'],
+      description: 'Building responsive user interfaces',
+    },
+    {
+      context: 'Backend',
+      tools: ['Node.js', 'Express.js'],
+      description: 'Server-side development and APIs',
+    },
+    {
+      context: 'Databases',
+      tools: ['MongoDB', 'MySQL', 'OracleSQL'],
+      description: 'Data storage and management',
+    },
+    {
+      context: 'Tools & Platforms',
+      tools: ['Git', 'GitHub', 'VS Code', 'Power BI', 'Docker', 'Canva', 'Overleaf'],
+      description: 'Development and productivity tools',
     },
   ];
 
@@ -46,7 +46,7 @@ const Skills = () => {
           >
             <span className="text-xs font-mono text-primary/60 block mb-2">capabilities</span>
             <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-              What I can build with
+              Technical Skills
             </h2>
           </div>
 

@@ -6,15 +6,15 @@ const About = () => {
   const blocks = [
     {
       label: '01',
-      content: 'I study Computer Science at VNR VJIET with a focus on understanding how systems work — not just how to use them.',
+      content: 'Aspiring software engineer pursuing B.Tech in Computer Science with hands-on experience in building, testing, and deploying full-stack web applications.',
     },
     {
       label: '02', 
-      content: 'My approach starts with the problem. Before writing code, I map out data flow, edge cases, and user impact.',
+      content: 'Actively seeking opportunities to contribute to production-level software systems while strengthening system design and problem-solving skills.',
     },
     {
       label: '03',
-      content: 'I build full-stack applications, from database schemas to polished interfaces. I care about both the architecture and the experience.',
+      content: 'I’m focused on strengthening fundamentals by building projects and learning how real-world applications are designed.',
     },
     {
       label: '04',
@@ -39,7 +39,7 @@ const About = () => {
             }`}
           >
             <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-              How I think about software
+              Profile Summary
             </h2>
           </div>
 

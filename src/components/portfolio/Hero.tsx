@@ -55,35 +55,24 @@ const Hero = () => {
                 </h1>
               </div>
               
-              {/* Role - smaller, indented */}
-              <div 
-                className={`pl-1 transition-all duration-700 delay-200 ${
-                  stage >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
-                }`}
-              >
-                <p className="text-lg md:text-xl font-mono text-primary">
-                  Software Developer
-                </p>
-              </div>
-              
               {/* Description - offset paragraph */}
               <div 
-                className={`max-w-lg transition-all duration-700 delay-300 ${
-                  stage >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                className={`max-w-lg transition-all duration-700 delay-200 ${
+                  stage >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
                 <p className="text-muted-foreground leading-relaxed">
-                  Building software with intention. Focused on{' '}
+                  Passionate student eager to learn and contribute to innovative projects. Focused on mastering{' '}
                   <span className="text-foreground">system design</span>,{' '}
-                  <span className="text-foreground">clean architecture</span>, and solving problems that matter.
+                  <span className="text-foreground">clean architecture</span>, and solving real-world problems through code. Ready to bring fresh perspectives and dedication to any team.
                 </p>
               </div>
             </div>
             
             {/* Right column - Actions and links */}
             <div 
-              className={`lg:col-span-5 lg:pl-8 space-y-12 transition-all duration-700 delay-500 ${
-                stage >= 5 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+              className={`lg:col-span-5 lg:pl-8 space-y-12 transition-all duration-700 delay-400 ${
+                stage >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
               {/* CTA */}
@@ -97,6 +86,14 @@ const Hero = () => {
                 </button>
                 
                 <a
+                  href="/resume.pdf"
+                  download="Karthikeya_Karnati_Resume.pdf"
+                  className="group flex items-center gap-3 text-foreground hover:text-primary transition-colors"
+                >
+                  <span className="text-sm font-medium tracking-wide">Download resume</span>
+                </a>
+                
+                <a
                   href="#contact"
                   className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
@@ -107,7 +104,7 @@ const Hero = () => {
               {/* Social links - vertical on desktop */}
               <div className="flex lg:flex-col gap-4">
                 <a 
-                  href="https://github.com/karkarnati" 
+                  href="https://github.com/karthik-462" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
@@ -118,7 +115,7 @@ const Hero = () => {
                   </span>
                 </a>
                 <a 
-                  href="https://linkedin.com/in/karthikeya-karnati" 
+                  href="https://www.linkedin.com/in/karthikeya-karnati-950411296/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
@@ -148,7 +145,7 @@ const Hero = () => {
             }`}
           >
             <div className="h-px flex-1 bg-gradient-to-r from-border via-primary/30 to-transparent" />
-            <span className="text-xs font-mono text-muted-foreground">scroll</span>
+            <span className="text-xs font-mono text-muted-foreground">More About Me ↓</span>
           </div>
         </div>
       </div>

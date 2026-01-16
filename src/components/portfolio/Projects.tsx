@@ -24,7 +24,7 @@ const Projects = () => {
       approach: 'Designed a role-based system with optimized MongoDB queries and implemented pagination for scalability. Built modular components for different user types.',
       tools: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
       result: '80+ active students, 40% faster data retrieval through query optimization',
-      github: 'https://github.com/karkarnati/nest-notion',
+      github: 'https://github.com/karthik-462/nest-notion',
     },
     {
       id: 'submira',
@@ -33,7 +33,7 @@ const Projects = () => {
       approach: 'Built a REST API with scheduled tasks for renewal reminders. Focused on data integrity and user-specific data isolation.',
       tools: ['React', 'Node.js', 'Express', 'MongoDB', 'Cron'],
       result: 'Handles 1000+ records per user, 30% improvement in user engagement',
-      github: 'https://github.com/karkarnati/submira',
+      github: 'https://github.com/karthik-462/Submira',
     },
     {
       id: 'shrubyvore',
@@ -42,7 +42,7 @@ const Projects = () => {
       approach: 'Created a searchable plant database with filtering. Prioritized mobile responsiveness and fast initial load.',
       tools: ['React', 'TailwindCSS', 'JavaScript'],
       result: '30+ plant entries, 25% longer average session duration',
-      github: 'https://github.com/karkarnati/shrubyvore',
+      github: 'https://github.com/karthik-462/shrubyvore',
     },
   ];
 
@@ -189,7 +189,7 @@ const Projects = () => {
             }`}
           >
             <a 
-              href="https://github.com/karkarnati"
+              href="https://github.com/karthik-462"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"

@@ -15,9 +15,12 @@ const Navbar = () => {
 
   const navItems = [
     { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
+    { label: 'Education', href: '#education' },
     { label: 'Projects', href: '#projects' },
+    { label: 'Skills', href: '#skills' },
     { label: 'Experience', href: '#experience' },
+    { label: 'Certificates', href: '#certificates' },
+    { label: 'Extra Curriculars', href: '#extra-curriculars' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -44,7 +47,7 @@ const Navbar = () => {
             }}
             className="text-sm font-mono text-foreground hover:text-primary transition-colors"
           >
-            kk.
+            KK.
           </a>
 
           {/* Nav links - hidden on mobile */}
