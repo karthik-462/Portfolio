@@ -25,9 +25,9 @@ const About = () => {
   return (
     <section id="about" className="py-32 relative">
       {/* Section marker */}
-      <div className="absolute right-8 md:right-16 top-32 text-xs font-mono text-muted-foreground/50 writing-mode-vertical hidden lg:block" 
+      <div className="absolute right-8 md:right-16 top-32 text-xs font-heading font-bold tracking-[0.3em] uppercase text-muted-foreground/50 hidden lg:block" 
            style={{ writingMode: 'vertical-rl' }}>
-        about
+        ABOUT
       </div>
       
       <div className="container px-6">
@@ -38,7 +38,7 @@ const About = () => {
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
             }`}
           >
-            <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+            <h2 className="text-2xl md:text-4xl font-heading font-bold text-foreground tracking-wide uppercase drop-shadow-[0_0_8px_rgba(212,25,32,0.3)]">
               Profile Summary
             </h2>
           </div>
@@ -62,7 +62,7 @@ const About = () => {
                     index % 2 === 1 ? 'md:col-start-2' : 'md:col-start-1'
                   }`}
                 >
-                  <span className="text-xs font-mono text-primary/60">{block.label}</span>
+                  <span className="text-xs font-heading font-black text-primary/80 tracking-widest border-l-2 border-primary pl-2">{block.label}</span>
                 </div>
                 
                 {/* Content - varying widths */}
@@ -86,8 +86,8 @@ const About = () => {
             }`}
           >
             <div className="w-12 h-px bg-primary/40" />
-            <span className="text-xs font-mono text-muted-foreground">CGPA 8.43</span>
-            <div className="flex-1 h-px bg-border" />
+            <span className="text-xs font-heading font-bold uppercase text-primary tracking-[0.2em]">CGPA 8.43</span>
+            <div className="flex-1 h-px bg-gradient-to-r from-border to-transparent" />
           </div>
         </div>
       </div>

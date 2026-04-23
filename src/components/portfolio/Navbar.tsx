@@ -45,9 +45,9 @@ const Navbar = () => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="text-sm font-mono text-foreground hover:text-primary transition-colors"
+            className="text-lg font-heading font-black text-foreground hover:text-primary transition-colors tracking-widest drop-shadow-[0_0_8px_rgba(176,38,255,0.4)]"
           >
-            KK.
+            Karthikeya.
           </a>
 
           {/* Nav links - hidden on mobile */}
@@ -56,7 +56,7 @@ const Navbar = () => {
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-xs font-mono text-muted-foreground hover:text-foreground transition-colors"
+                className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-muted-foreground hover:text-primary hover:drop-shadow-[0_0_8px_rgba(212,25,32,0.6)] transition-all"
               >
                 {item.label}
               </button>
@@ -82,7 +82,7 @@ const Navbar = () => {
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="block w-full text-left text-sm font-heading tracking-widest uppercase text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all py-3 pl-4 border-l border-transparent hover:border-primary"
               >
                 {item.label}
               </button>

@@ -6,12 +6,12 @@ const Skills = () => {
   const capabilities = [
     {
       context: 'Languages',
-      tools: ['C', 'C++', 'Python', 'JavaScript'],
+      tools: ['C++', 'Python', 'JavaScript', 'SQL'],
       description: 'Programming languages for various applications',
     },
     {
       context: 'Frontend',
-      tools: ['React', 'TailwindCSS'],
+      tools: ['React', 'TailwindCSS', 'Bootstrap', 'HTML5', 'CSS3'],
       description: 'Building responsive user interfaces',
     },
     {
@@ -26,15 +26,14 @@ const Skills = () => {
     },
     {
       context: 'Tools & Platforms',
-      tools: ['Git', 'GitHub', 'VS Code', 'Power BI', 'Docker', 'Canva', 'Overleaf'],
+      tools: ['Git', 'GitHub', 'VS Code', 'Docker', 'Canva', 'Overleaf'],
       description: 'Development and productivity tools',
     },
   ];
 
   return (
     <section id="skills" className="py-32 relative">
-      {/* Background accent */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/20 to-transparent pointer-events-none" />
+      
       
       <div className="container px-6 relative">
         <div ref={ref} className="max-w-5xl mx-auto">
@@ -44,9 +43,9 @@ const Skills = () => {
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
             }`}
           >
-            <span className="text-xs font-mono text-primary/60 block mb-2">capabilities</span>
-            <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-              Technical Skills
+            <span className="text-xs font-heading font-black text-primary/80 uppercase tracking-widest block mb-2">WHAT I KNOW</span>
+            <h2 className="text-2xl md:text-4xl font-heading font-bold text-foreground drop-shadow-[0_0_8px_rgba(176,38,255,0.3)]">
+              Technical Interface
             </h2>
           </div>
 
@@ -60,11 +59,11 @@ const Skills = () => {
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className="py-5 border-b border-border/50 hover:border-primary/30 transition-colors">
+                <div className="py-5 border-b border-border hover:border-primary/50 hover:bg-card/30 transition-all clip-edges px-4">
                   <div className="grid md:grid-cols-12 gap-4 items-center">
                     {/* Context */}
                     <div className="md:col-span-4">
-                      <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                      <p className="text-sm font-heading font-bold uppercase tracking-wider text-muted-foreground group-hover:text-primary transition-colors">
                         {cap.context}
                       </p>
                     </div>
@@ -101,8 +100,8 @@ const Skills = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            <p className="text-xs font-mono text-muted-foreground/60">
-              Also familiar with: Power BI, Figma, Postman, Linux CLI
+            <p className="text-[10px] font-heading font-black uppercase tracking-widest text-muted-foreground/60">
+              Also familiar with: Power BI, Figma
             </p>
           </div>
         </div>

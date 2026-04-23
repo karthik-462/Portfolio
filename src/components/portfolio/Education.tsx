@@ -1,126 +1,78 @@
-import { useState } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const Education = () => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-
-  const education = [
-    {
-      degree: 'B.Tech, Computer Science',
-      institution: 'VNR Vignana Jyothi Institute of Engineering and Technology',
-      year: '2023 – 2027',
-      details: 'Currently pursuing B.Tech in Computer Science with a CGPA of 8.43.',
-    },
-    {
-      degree: 'Intermediate',
-      institution: 'Excellencia Junior College',
-      year: '2021 – 2023',
-      details: 'Completed intermediate education with 96.1% marks.',
-    },
-    {
-      degree: 'CBSE',
-      institution: 'Silver Oaks International School',
-      year: '2021',
-      details: 'Completed CBSE with 85.6% marks.',
-    },
-  ];
-
-  const toggleExpand = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
 
   return (
     <section id="education" className="py-32 relative">
       {/* Section marker */}
-      <div className="absolute right-8 md:right-16 top-32 text-xs font-mono text-muted-foreground/50 writing-mode-vertical hidden lg:block"
+      <div className="absolute right-8 md:right-16 top-32 text-xs font-heading font-bold tracking-[0.3em] uppercase text-muted-foreground/50 hidden lg:block"
            style={{ writingMode: 'vertical-rl' }}>
-        education
+        EDUCATION
       </div>
 
       <div className="container px-6">
         <div ref={ref} className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
+          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-16 text-center text-foreground drop-shadow-[0_0_8px_rgba(176,38,255,0.3)] uppercase tracking-widest">
             Education
           </h2>
 
-          {/* Timeline Container */}
-          <div className="max-w-4xl mx-auto relative">
-            {/* Timeline Line on the left */}
-            <div className="absolute left-8 w-1 bg-gradient-to-b from-primary via-primary/80 to-primary/60 h-full rounded-full hidden md:block shadow-lg"></div>
-
-            <div className="space-y-20">
-              {education.map((item, index) => {
-                const isExpanded = expandedIndex === index;
-
-                return (
-                  <div key={index} className="relative">
-                    {/* Timeline Dot on the left */}
-                    <div className="absolute left-6 transform -translate-x-1/2 hidden md:flex items-center justify-center z-10">
-                      <div className={`w-6 h-6 rounded-full border-4 border-background shadow-lg transition-all duration-300 ${
-                        isExpanded ? 'bg-primary scale-110' : 'bg-muted-foreground/20'
-                      }`}></div>
-                      {isExpanded && (
-                        <div className="absolute w-8 h-8 rounded-full bg-primary/20 animate-ping"></div>
-                      )}
-                    </div>
-
-                    {/* Content Container - All aligned to left */}
-                    <div className="flex flex-col md:flex-row items-start">
-                      {/* Spacer for timeline */}
-                      <div className="hidden md:block w-16"></div>
-
-                      {/* Content Card - Always on the left */}
-                      <div className="w-full md:flex-1 md:pl-8">
-                        <div
-                          className={`bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl transition-all duration-500 cursor-pointer hover:shadow-2xl hover:border-primary/30 hover:bg-card group ${
-                            isExpanded ? 'shadow-2xl border-primary/50 bg-card scale-[1.02]' : 'hover:scale-[1.01]'
-                          }`}
-                          onClick={() => toggleExpand(index)}
-                        >
-                          {/* Header - Always Visible */}
-                          <div className="p-6">
-                            <div className="flex items-start justify-between">
-                              <div className="flex-1">
-                                <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                                  {item.degree}
-                                </h3>
-                                <p className="text-muted-foreground text-sm leading-relaxed">
-                                  {item.institution}
-                                </p>
-                              </div>
-                              {/* Subtle expand indicator */}
-                              <div className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <div className="w-2 h-2 rounded-full bg-primary/60"></div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Expandable Content */}
-                          <div
-                            className={`overflow-hidden transition-all duration-700 ease-out ${
-                              isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                            }`}
-                          >
-                            <div className="px-6 pb-6 border-t border-border/30">
-                              <div className="flex items-center gap-3 mb-4 mt-4">
-                                <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
-                                <span className="text-xs font-mono text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
-                                  {item.year}
-                                </span>
-                              </div>
-                              <p className="text-sm text-muted-foreground leading-relaxed">
-                                {item.details}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+          {/* Bento Box Layout */}
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* Primary Degree - Full Width Top */}
+            <div className={`md:col-span-2 bg-black border border-border clip-edges p-8 md:p-10 transition-all duration-700 hover:border-primary/60 hover:purple-glow hover:-translate-y-2 group ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                <div>
+                  <h3 className="text-2xl md:text-4xl font-heading font-bold text-foreground group-hover:text-primary transition-colors tracking-wide mb-2">
+                    B.Tech, Computer Science
+                  </h3>
+                  <p className="text-muted-foreground text-lg">
+                    VNR Vignana Jyothi Institute of Engineering and Technology
+                  </p>
+                </div>
+                <div className="mt-4 md:mt-0 px-4 py-2 bg-primary/10 border border-primary/30 clip-edges">
+                  <span className="text-sm font-heading font-black text-primary tracking-widest uppercase">2023 – 2027</span>
+                </div>
+              </div>
+              <div className="pt-6 border-t border-border/30">
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  Currently pursuing B.Tech in Computer Science with a CGPA of 8.51. Focusing heavily on system design, data structures, and advanced backend engineering architectures.
+                </p>
+              </div>
             </div>
+
+            {/* Secondary Education - Side by Side */}
+            <div className={`bg-black border border-border clip-edges p-8 transition-all duration-700 delay-100 hover:border-primary/50 hover:purple-glow hover:-translate-y-1 group ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+              <div className="mb-4">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground group-hover:text-primary transition-colors tracking-wide mb-2">
+                  Intermediate
+                </h3>
+                <p className="text-muted-foreground text-sm">Excellencia Junior College</p>
+              </div>
+              <span className="inline-block px-3 py-1 bg-primary/5 border border-primary/20 text-xs font-heading font-bold text-primary tracking-widest mb-4 clip-edges">
+                2021 – 2023
+              </span>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Completed intermediate education focusing on mathematics and physical sciences with <span className="text-foreground font-bold">96.1% marks</span>.
+              </p>
+            </div>
+
+            <div className={`bg-black border border-border clip-edges p-8 transition-all duration-700 delay-200 hover:border-primary/50 hover:purple-glow hover:-translate-y-1 group ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+              <div className="mb-4">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground group-hover:text-primary transition-colors tracking-wide mb-2">
+                  CBSE (Class X)
+                </h3>
+                <p className="text-muted-foreground text-sm">Silver Oaks International School</p>
+              </div>
+              <span className="inline-block px-3 py-1 bg-primary/5 border border-primary/20 text-xs font-heading font-bold text-primary tracking-widest mb-4 clip-edges">
+                2021
+              </span>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Completed secondary school education under the CBSE curriculum with <span className="text-foreground font-bold">85.6% marks</span>.
+              </p>
+            </div>
+
           </div>
         </div>
       </div>

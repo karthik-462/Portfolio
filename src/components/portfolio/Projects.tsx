@@ -60,9 +60,9 @@ const Projects = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <span className="text-xs font-mono text-primary/60 block mb-2">selected work</span>
-            <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-              Engineering case studies
+            <span className="text-xs font-heading font-black text-primary/80 uppercase tracking-widest block mb-2">SELECTED WORK</span>
+            <h2 className="text-2xl md:text-4xl font-heading font-bold text-foreground drop-shadow-[0_0_8px_rgba(212,25,32,0.3)]">
+              Engineering Projects
             </h2>
           </div>
 
@@ -77,8 +77,8 @@ const Projects = () => {
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div 
-                  className={`relative border border-border rounded-lg overflow-hidden transition-all duration-300 ${
-                    expandedId === project.id ? 'border-primary/40 bg-card' : 'hover:border-primary/20'
+                  className={`relative border border-border bg-black clip-edges transition-all duration-300 ${
+                    expandedId === project.id ? 'border-primary/80 bg-card purple-glow' : 'hover:border-primary/50 hover:bg-card/50 hover:purple-glow'
                   }`}
                 >
                   {/* Header - always visible */}
@@ -89,7 +89,7 @@ const Projects = () => {
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-4 mb-3">
-                          <h3 className="text-xl md:text-2xl font-semibold text-foreground">
+                          <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground tracking-wide">
                             {project.title}
                           </h3>
                           {project.github && (
@@ -126,8 +126,8 @@ const Projects = () => {
                         </span>
                       ))}
                       {project.tools.length > 3 && (
-                        <span className="text-xs font-mono text-muted-foreground">
-                          +{project.tools.length - 3} more
+                        <span className="text-[10px] font-heading font-black uppercase tracking-widest text-muted-foreground pt-1">
+                          +{project.tools.length - 3} MORE
                         </span>
                       )}
                     </div>
@@ -143,8 +143,8 @@ const Projects = () => {
                       <div className="grid md:grid-cols-2 gap-8">
                         {/* Approach */}
                         <div>
-                          <span className="text-xs font-mono text-primary/60 uppercase tracking-wider">
-                            Approach
+                          <span className="text-xs font-heading font-black text-primary/80 uppercase tracking-widest">
+                            APPROACH
                           </span>
                           <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                             {project.approach}
@@ -153,8 +153,8 @@ const Projects = () => {
                         
                         {/* Result */}
                         <div>
-                          <span className="text-xs font-mono text-primary/60 uppercase tracking-wider">
-                            Result
+                          <span className="text-xs font-heading font-black text-primary/80 uppercase tracking-widest">
+                            RESULT
                           </span>
                           <p className="mt-2 text-sm text-foreground leading-relaxed">
                             {project.result}
@@ -168,7 +168,7 @@ const Projects = () => {
                           {project.tools.map((tool) => (
                             <span 
                               key={tool}
-                              className="text-xs font-mono text-foreground/80"
+                              className="text-[10px] font-heading font-black uppercase tracking-widest text-primary/80 border border-primary/30 px-3 py-1 clip-edges"
                             >
                               {tool}
                             </span>
@@ -192,9 +192,9 @@ const Projects = () => {
               href="https://github.com/karthik-462"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
+              className="inline-flex items-center gap-2 text-sm font-heading font-bold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors group"
             >
-              <span>More on GitHub</span>
+              <span>ACCESS FULL LOGS ON GITHUB</span>
               <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </div>
