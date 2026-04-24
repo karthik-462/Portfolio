@@ -86,7 +86,7 @@ const About = () => {
             }`}
           >
             <div className="w-12 h-px bg-primary/40" />
-            <span className="text-xs font-heading font-bold uppercase text-primary tracking-[0.2em]">CGPA 8.43</span>
+            <span className="text-xs font-heading font-bold uppercase text-primary tracking-[0.2em]">CGPA 8.51</span>
             <div className="flex-1 h-px bg-gradient-to-r from-border to-transparent" />
           </div>
         </div>
